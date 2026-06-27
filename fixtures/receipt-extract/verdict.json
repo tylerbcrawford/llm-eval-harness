@@ -1,0 +1,30 @@
+{
+  "criteria": [
+    {
+      "id": "valid_json",
+      "score": 1.0,
+      "reasoning": "Output is a single valid JSON object with no surrounding prose or fences."
+    },
+    {
+      "id": "correct_vendor",
+      "score": 1.0,
+      "reasoning": "Vendor is 'BLUE BOTTLE COFFEE' which matches case-insensitive and whitespace-normalized."
+    },
+    {
+      "id": "iso_date",
+      "score": 1.0,
+      "reasoning": "Date is '2026-03-14' in correct ISO format from 03/14/2026."
+    },
+    {
+      "id": "numeric_total",
+      "score": 1.0,
+      "reasoning": "Total is the number 10.58, the grand total, not a string."
+    },
+    {
+      "id": "no_hallucination",
+      "score": 1.0,
+      "reasoning": "Only the three requested keys are present with supported values."
+    }
+  ],
+  "summary": "The candidate answer fully satisfies all rubric criteria with correct, well-formatted values."
+}

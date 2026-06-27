@@ -1,0 +1,25 @@
+{
+  "criteria": [
+    {
+      "id": "under_limit",
+      "score": 1.0,
+      "reasoning": "The summary is 29 words, within the 30-word limit."
+    },
+    {
+      "id": "has_year",
+      "score": 1.0,
+      "reasoning": "States the bridge 'opened in 1964.'"
+    },
+    {
+      "id": "has_span",
+      "score": 1.0,
+      "reasoning": "States the main span at 1,298 meters."
+    },
+    {
+      "id": "faithful",
+      "score": 1.0,
+      "reasoning": "All claims (location, year, span, designer, thirteen lanes) are supported by the passage; nothing fabricated."
+    }
+  ],
+  "summary": "The summary is concise, within the word limit, and accurately includes the year, span length, and only faithful facts."
+}

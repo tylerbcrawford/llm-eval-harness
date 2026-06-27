@@ -1,0 +1,1 @@
+{"vendor": "BLUE BOTTLE COFFEE", "date": "2026-03-14", "total": 10.58}

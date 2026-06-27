@@ -1,0 +1,44 @@
+name: eval
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch: # manual trigger for the optional live job
+
+jobs:
+  # Always-on gate: unit tests + the eval suite in replay mode. No API key, so
+  # it runs on every push and PR, including from forks.
+  replay:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install
+        run: pip install -e ".[dev]"
+      - name: Unit tests (replay, no key)
+        run: pytest -q
+      - name: Eval gate (replay, no key)
+        # Exits non-zero if any case falls below its threshold.
+        run: python -m harness run cases/
+
+  # Optional: run the eval against the real Anthropic API. Manual-trigger only,
+  # so it never fails PRs that lack the secret. Set ANTHROPIC_API_KEY in repo
+  # secrets to use it.
+  live:
+    if: github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install (with live extra)
+        run: pip install -e ".[dev,live]"
+      - name: Eval gate (live)
+        env:
+          EVAL_LIVE: "1"
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python -m harness run cases/ --live

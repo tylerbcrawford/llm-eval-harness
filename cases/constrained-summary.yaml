@@ -1,0 +1,34 @@
+id: constrained-summary
+description: >
+  Summarize a passage under a hard length limit while preserving two specific
+  facts — the kind of multi-constraint check where a judge beats string matching.
+
+task: |
+  Summarize the passage below in 30 words or fewer. Your summary must mention both
+  the year the bridge opened and its main span length. Do not add any facts that
+  are not in the passage.
+
+  Passage:
+    The Verrazzano-Narrows Bridge connects Staten Island and Brooklyn across the
+    entrance to New York Harbor. When it opened in 1964 it had the longest main
+    span of any suspension bridge in the world, at 1,298 meters. It carries
+    thirteen lanes of traffic across two decks and was designed by the engineer
+    Othmar Ammann, who also worked on the George Washington Bridge.
+
+rubric:
+  - id: under_limit
+    description: The summary is 30 words or fewer.
+    weight: 2
+  - id: has_year
+    description: The summary states that the bridge opened in 1964.
+    weight: 1
+  - id: has_span
+    description: The summary states the main span length (1,298 meters / ~1298 m).
+    weight: 1
+  - id: faithful
+    description: >
+      Every claim in the summary is supported by the passage; nothing is
+      fabricated or exaggerated.
+    weight: 2
+
+threshold: 0.8

@@ -1,0 +1,45 @@
+id: receipt-extract
+description: Extract structured fields from messy receipt text as JSON.
+
+target_system: |
+  You are a precise data-extraction tool. Output only what is asked for, with no
+  commentary, code fences, or explanation.
+
+task: |
+  Extract the vendor, date, and total from the receipt below and return a single
+  JSON object with exactly the keys "vendor", "date", "total". Use ISO format
+  (YYYY-MM-DD) for the date and a number (not a string) for the total. Output the
+  JSON object only.
+
+  Receipt:
+    BLUE  BOTTLE  COFFEE
+    ---------------------------
+    Order #4471      03/14/2026
+    Cortado .............. 5.25
+    Almond croissant ..... 4.50
+    ---------------------------
+    SUBTOTAL ............. 9.75
+    Tax .................. 0.83
+    TOTAL ............... 10.58
+    Thank you!
+
+rubric:
+  - id: valid_json
+    description: >
+      The output is a single valid JSON object and nothing else (no prose, no
+      markdown code fences).
+    weight: 1
+  - id: correct_vendor
+    description: The "vendor" value is "Blue Bottle Coffee" (case-insensitive, whitespace normalized).
+    weight: 1
+  - id: iso_date
+    description: The "date" value is "2026-03-14" in ISO YYYY-MM-DD format.
+    weight: 1
+  - id: numeric_total
+    description: The "total" value is the number 10.58 (not a string, the grand total not the subtotal).
+    weight: 2
+  - id: no_hallucination
+    description: No keys or values are invented beyond what the receipt supports.
+    weight: 1
+
+threshold: 0.85

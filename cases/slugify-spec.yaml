@@ -1,0 +1,44 @@
+id: slugify-spec
+description: Implement a small function to a written spec with edge cases.
+
+target_system: |
+  You are a careful Python developer. Return only the function implementation in a
+  single code block — no prose before or after.
+
+task: |
+  Write a Python function `slugify(s: str) -> str` that converts a title into a
+  URL slug, following this spec exactly:
+
+    1. Lowercase the whole string.
+    2. Strip leading and trailing whitespace.
+    3. Replace any run of non-alphanumeric characters with a single hyphen.
+    4. Collapse multiple consecutive hyphens into one.
+    5. Remove any leading or trailing hyphens from the result.
+    6. An empty or all-symbol input returns an empty string "".
+
+  Examples:
+    slugify("Hello, World!")        -> "hello-world"
+    slugify("  Trailing  spaces  ") -> "trailing-spaces"
+    slugify("C++ & Rust??")         -> "c-rust"
+    slugify("!!!")                  -> ""
+
+rubric:
+  - id: rule_lowercase_trim
+    description: Implementation lowercases and strips leading/trailing whitespace (rules 1-2).
+    weight: 1
+  - id: rule_separator_collapse
+    description: >
+      Runs of non-alphanumeric characters become a single hyphen and consecutive
+      hyphens collapse to one (rules 3-4).
+    weight: 2
+  - id: rule_trim_hyphens
+    description: Leading and trailing hyphens are removed from the result (rule 5).
+    weight: 1
+  - id: rule_empty_input
+    description: Empty or all-symbol input returns "" rather than erroring (rule 6).
+    weight: 1
+  - id: matches_examples
+    description: The implementation would produce all four documented example outputs.
+    weight: 2
+
+threshold: 0.85

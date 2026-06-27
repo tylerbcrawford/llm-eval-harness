@@ -1,0 +1,30 @@
+{
+  "criteria": [
+    {
+      "id": "rule_lowercase_trim",
+      "score": 1.0,
+      "reasoning": "s.lower().strip() correctly lowercases and strips whitespace."
+    },
+    {
+      "id": "rule_separator_collapse",
+      "score": 1.0,
+      "reasoning": "The regex [^a-z0-9]+ replaces runs of non-alphanumerics with single hyphen, and the second sub collapses any remaining consecutive hyphens."
+    },
+    {
+      "id": "rule_trim_hyphens",
+      "score": 1.0,
+      "reasoning": "s.strip('-') removes leading and trailing hyphens."
+    },
+    {
+      "id": "rule_empty_input",
+      "score": 1.0,
+      "reasoning": "All-symbol input becomes '-' then stripped to '', empty input stays ''; no errors."
+    },
+    {
+      "id": "matches_examples",
+      "score": 1.0,
+      "reasoning": "All four examples produce correct outputs: hello-world, trailing-spaces, c-rust, and ''."
+    }
+  ],
+  "summary": "The implementation correctly and completely satisfies all six spec rules and produces all documented example outputs."
+}
