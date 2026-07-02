@@ -1,5 +1,7 @@
 # llm-eval-harness
 
+[![eval](https://github.com/tylerbcrawford/llm-eval-harness/actions/workflows/eval.yml/badge.svg)](https://github.com/tylerbcrawford/llm-eval-harness/actions/workflows/eval.yml)
+
 A small, transparent **LLM-as-judge** evaluation harness. You define eval cases
 (a task + a rubric), a target model answers, and a second model — the *judge* —
 scores each answer against the rubric. Scores aggregate to a weighted pass/fail
