@@ -7,6 +7,8 @@ A small, transparent **LLM-as-judge** evaluation harness. You define eval cases
 scores each answer against the rubric. Scores aggregate to a weighted pass/fail
 that a CI pipeline can gate on.
 
+> **Built with Claude Code.** I set the requirements and the architecture, made the design decisions, and run it in CI on my own eval cases. The agent wrote most of the code under my direction.
+
 **It runs fully offline.** By default the harness replays recorded model
 responses from `fixtures/`, so you can clone it and run the whole suite —
 `pytest` and the scored report — with **no API key and no network**. Set
@@ -126,9 +128,8 @@ tests/                 # pytest: parsing, scoring, gating, full replay
 
 ## Notes
 
-Built with [Claude Code](https://claude.com/claude-code) — I designed the
-harness and rubrics and directed the implementation. This is a personal project
-demonstrating evaluation techniques; the cases are deliberately generic.
+This is a personal project demonstrating evaluation techniques; the cases are
+deliberately generic.
 
 ## License
 
